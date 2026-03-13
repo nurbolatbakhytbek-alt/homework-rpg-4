@@ -1,17 +1,17 @@
 package com.narxoz.rpg.composite;
 
-import java.util.Collections;
 import java.util.List;
 
-public abstract class UnitLeaf implements CombatNode {
-    private final String name;
-    private int health;
-    private final int attackPower;
+public class UnitLeaf implements CombatNode {
 
-    protected UnitLeaf(String name, int health, int attackPower) {
+    protected String name;
+    protected int health;
+    protected int damage;
+
+    public UnitLeaf(String name, int health, int damage) {
         this.name = name;
         this.health = health;
-        this.attackPower = attackPower;
+        this.damage = damage;
     }
 
     @Override
@@ -26,15 +26,12 @@ public abstract class UnitLeaf implements CombatNode {
 
     @Override
     public int getAttackPower() {
-        return isAlive() ? attackPower : 0;
+        return 0;
     }
 
     @Override
-    public void takeDamage(int amount) {
-        if (!isAlive()) {
-            return;
-        }
-        health = Math.max(0, health - Math.max(0, amount));
+    public void takeDamage(int damage) {
+        health -= damage;
     }
 
     @Override
@@ -44,11 +41,17 @@ public abstract class UnitLeaf implements CombatNode {
 
     @Override
     public List<CombatNode> getChildren() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     @Override
     public void printTree(String indent) {
-        System.out.println(indent + "- " + name + " [HP=" + health + ", ATK=" + attackPower + "]");
+
+    }
+
+    @Override
+    public void attack(CombatNode target) {
+        System.out.println(name + " attacks " + target.getName());
+        target.takeDamage(damage);
     }
 }
