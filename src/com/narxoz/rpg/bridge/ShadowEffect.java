@@ -1,5 +1,7 @@
 package com.narxoz.rpg.bridge;
 
+import com.narxoz.rpg.composite.CombatNode;
+
 public class ShadowEffect implements EffectImplementor {
     @Override
     public int computeDamage(int basePower) {
@@ -9,5 +11,10 @@ public class ShadowEffect implements EffectImplementor {
     @Override
     public String getEffectName() {
         return "Shadow";
+    }
+
+    @Override
+    public void applyEffect(CombatNode target) {
+
     }
 }
