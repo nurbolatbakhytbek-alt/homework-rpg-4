@@ -1,6 +1,8 @@
 package com.narxoz.rpg.bridge;
 
+import com.narxoz.rpg.composite.CombatNode;
+
 public interface EffectImplementor {
-    int computeDamage(int basePower);
-    String getEffectName();
+
+    void applyEffect(CombatNode target);
 }
