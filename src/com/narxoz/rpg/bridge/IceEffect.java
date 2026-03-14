@@ -1,13 +1,12 @@
 package com.narxoz.rpg.bridge;
 
+import com.narxoz.rpg.composite.CombatNode;
+
 public class IceEffect implements EffectImplementor {
-    @Override
-    public int computeDamage(int basePower) {
-        return Math.max(0, (int) Math.round(basePower * 1.1));
-    }
 
     @Override
-    public String getEffectName() {
-        return "Ice";
+    public void applyEffect(CombatNode target) {
+        System.out.println(target.getName() + " is frozen!");
+        target.takeDamage(10);
     }
 }
