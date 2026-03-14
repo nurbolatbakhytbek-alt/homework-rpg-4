@@ -1,13 +1,12 @@
 package com.narxoz.rpg.bridge;
 
+import com.narxoz.rpg.composite.CombatNode;
+
 public class FireEffect implements EffectImplementor {
-    @Override
-    public int computeDamage(int basePower) {
-        return Math.max(0, (int) Math.round(basePower * 1.2));
-    }
 
     @Override
-    public String getEffectName() {
-        return "Fire";
+    public void applyEffect(CombatNode target) {
+        System.out.println(target.getName() + " is burned!");
+        target.takeDamage(15);
     }
 }
